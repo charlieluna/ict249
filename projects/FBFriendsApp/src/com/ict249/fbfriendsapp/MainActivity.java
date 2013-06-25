@@ -7,6 +7,7 @@ import org.apache.cordova.DroidGap;
 
 import com.ict249.facebookapp.R;
 
+@SuppressWarnings("unused")
 public class MainActivity extends DroidGap {
 
     @Override

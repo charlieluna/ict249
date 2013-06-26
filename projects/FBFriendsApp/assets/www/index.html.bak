@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Facebook Connect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
+  </head>
+  <body>
+    <div id="friends"></div>
+    <!--phonegapfacebook plugin -->
+    <script src="cdv-plugin-fb-connect.js"></script>
+    <!--facebookjssdk -->
+    <script src="facebook_js_sdk.js"></script>
+    <script type="text/javascript">
+      function getFriendList(){
+        FB.api('/me/friends', function(response) {
+          if (response.error) {
+            alert(JSON.stringify(response.error));
+          } else {
+            var friends = document.getElementById('friends');
+            response.data.forEach(function(item) {
+            var d = document.createElement('div');
+            d.innerHTML = item.name;
+            data.appendChild(d);
+            });
+          }
+        });
+      }
+      
+      function login() {
+        FB.login(
+          function(response) {
+            if (response.session) {
+              getFriendList();
+            } else {
+              alert('not logged in');
+            }
+          },
+          { scope: "email" }
+        );
+      }
+              
+      document.addEventListener('deviceready',
+        function() {
+        try {
+          /* Initialize the Facebook plug-in. Note that you need to replace the
+          <app_id>by your Facebook’s app_id */
+          FB.init({ appId: "475507705863744", nativeInterface:CDV.FB });
+          document.getElementById('friends').innerHTML = "";
+          login();
+        } catch (e) {
+          alert(e);
+        }
+      }, false);
+                    
+    </script>
+    
+
+  </body>
+</html>

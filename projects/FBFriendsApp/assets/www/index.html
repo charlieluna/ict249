@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <link rel="stylesheet" type="text/css" href="jquerymobile/jquery.mobile-1.3.1.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <script type="text/javascript" charset="utf-8" src="jquery-1.10.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquerymobile/jquery.mobile-1.3.1.js"></script>
     
@@ -12,22 +13,29 @@
     <script type="text/javascript" src="facebook_js_sdk.js"></script>
     <script type="text/javascript" src="js/fbutils.js"></script>
     <script type="text/javascript">
-      document.addEventListener('deviceready',
-        function() {
-          try {
-            FB.init({ appId: 475507705863744, nativeInterface:CDV.FB, useCachedDialogs: false, authResponse: true });
-            FBlogin();
-          } catch (e) {
-            alert(e);
-          }
-        }, false);
+	      
+      document.addEventListener('deviceready', function() {
+    	  try {
+    		  if(!isConnected()) {
+    			  alert("You are not connected to the internet. Please check your network and start application again.");
+    			  navigator.app.exitApp();
+    			  }
+    		  else {
+    			   FB.init({ appId: 475507705863744, nativeInterface:CDV.FB, useCachedDialogs: false, authResponse: true });
+    		     FBlogin();
+    		  }
+    		} catch (e) {
+    		  alert(e);
+    		}
+    	  
+    		}, false);
                     
     </script>
     
   </head>
   <body>
     <!-- Page Start-->
-    <div data-role="page" data-theme="b" id="containerPage">
+    <div data-role="page" data-theme="a" id="home_page">
       <!-- Page Header Start -->
       <div data-role="header" id="hdr" data-nobackbtn="true">
         <h1>FBFriends</h1>
@@ -36,12 +44,27 @@
       
       <!-- Page Body Start -->
       <div data-role="content">
-        <button onclick="getFriendList()">Get Friends</button>
-        <div id="friends"></div>
+        <a href="#friends_page" type="button" id="get_friends_id" onclick="getFriendList()">Get Friends</a>
       </div>
       <!-- Page Body End -->
     </div>
     <!-- Page End -->  
+    
+    <!-- Page Start-->
+    <div data-role="page" data-theme="a" id="friends_page">
+      <!-- Page Header Start -->
+      <div data-role="header" id="hdr" data-nobackbtn="true">
+        <h1>Friends</h1>
+      </div>
+      <!-- Page Header End -->
+      
+      <!-- Page Body Start -->
+      <div data-role="content">
+        <div id="friends"><ul data-role="listview" id="friendlist" data-inset="false" data-theme="c" class="ui-listview ui-shadow"></ul></div>
+      </div>
+      <!-- Page Body End -->
+    </div>
+    <!-- Page End -->
 
   </body>
 </html>

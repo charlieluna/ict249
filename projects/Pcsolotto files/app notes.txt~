@@ -1,0 +1,27 @@
+Architecture 
+ 
+ Mobile client ---> Backend Server ----> Source website
+
+
+Mobile Client:
+-----------
+  - PhoneGap 
+  - UI will be using OnsenUI (need to learn angularjs)
+  - Plugins include 
+      - Push Notification
+      - Facebook Plugin
+      - Twitter 
+      - Send SMS
+
+Backend Server
+-----
+Components : 
+  - will serve as a REST server, the app will authenticate via token
+  - Configurations 
+    - configure list of sites that will serve as source for the result
+  - Scraper
+      - each source site have its corresponding scraper class
+      - will be executed periodically and result will be pushed to mobile apps using Push Notification
+  - Database (Optional)
+      - Save results on database so as to avoid scraping again
+

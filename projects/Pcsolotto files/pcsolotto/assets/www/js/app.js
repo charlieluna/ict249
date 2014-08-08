@@ -1,4 +1,3 @@
-(function(){
-	'use strict';
-	angular.module('myApp', ['onsen.directives']);
-})();
+
+'use strict';
+var pcsoLotto = angular.module('pcsolotto', ['onsen.directives', 'ngResource']);

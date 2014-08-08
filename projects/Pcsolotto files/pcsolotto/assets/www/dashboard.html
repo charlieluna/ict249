@@ -1,0 +1,9 @@
+<ons-page class="center" ng-controller="DashboardCtrl">
+  <h1>Lotto Results</h1>
+  <div ng-repeat="res in results">
+     <p>{{res.draw}} {{res.result}}</p>
+  </div>
+	<ons-button ng-click="ons.navigator.pushPage('result_form.html')">
+    Check Result
+  </ons-button>
+</ons-page>
